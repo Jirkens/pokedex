@@ -9,20 +9,7 @@ const PokemonItemListContainer = styled('div')(({ theme }) => ({
   flexWrap: 'wrap',
   gap: theme.spacing(4),
   height: '100%',
-  justifyContent: 'center',
-  padding: theme.spacing(14, 12),
-
-  [theme.breakpoints.down('lg')]: {
-    padding: theme.spacing(14, 8),
-  },
-
-  [theme.breakpoints.down('md')]: {
-    padding: theme.spacing(14, 0),
-  },
-
-  [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(7, 0),
-  },
+  // TODO nice to have fix styles - justifyContent: 'center',
 }));
 
 interface IPokemonItemListProps {
