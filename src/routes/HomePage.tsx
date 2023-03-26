@@ -18,25 +18,16 @@ const StatusContainer = styled('div')(({ theme }) => ({
   gap: theme.spacing(5),
   alignItems: 'center',
   marginBottom: theme.spacing(7),
-}));
-
-const HomePageContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: theme.spacing(14, 12),
-
-  [theme.breakpoints.down('lg')]: {
-    padding: theme.spacing(14, 8),
-  },
 
   [theme.breakpoints.down('md')]: {
-    padding: theme.spacing(14, 0),
-  },
-
-  [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(7, 0),
+    justifyContent: 'center',
   },
 }));
+
+const HomePageContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+});
 
 export const HomePage = () => {
   const { loading, error, data } = useQuery<IPokemonData>(GET_POKEMONS_QUERY);
@@ -87,11 +78,6 @@ export const HomePage = () => {
     setSearchText('');
     setIsFiltered(false);
   };
-
-  // TODO delete console logs
-  console.log("data", data);
-  console.log("searchText", searchText);
-  console.log("filteredData", filteredData);
 
   return (
     <HomePageContainer>

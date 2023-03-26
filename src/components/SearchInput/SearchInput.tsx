@@ -11,12 +11,21 @@ const FormPaper = styled(Paper)(({ theme }) => ({
   boxShadow: 'none',
   marginBottom: theme.spacing(12),
   padding: theme.spacing(1),
+
+  [theme.breakpoints.down('sm')]: {
+    marginBottom: theme.spacing(6),
+    width: '280px',
+  },
 })) as typeof Paper;
 
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   marginLeft: theme.spacing(5),
   flex: 1,
+
+  [theme.breakpoints.down('sm')]: {
+    marginLeft: 0,
+  },
 }));
 
 interface ISearchInputProps {

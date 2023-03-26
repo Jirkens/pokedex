@@ -1,4 +1,5 @@
 import { FC, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Card, CardMedia, styled, Typography } from "@mui/material";
 
 import { IPokemon } from "../../types";
@@ -12,6 +13,13 @@ const StyledNameContainer = styled('div')(({ theme }) => ({
   height: '55px',
 }));
 
+const StyledCard = styled(Card)({
+  display: 'flex',
+  flexDirection: 'column',
+  height: 275,
+  width: 250,
+});
+
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   maxHeight: '180px',
   width: 'auto',
@@ -22,28 +30,33 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   marginBottom: 'auto'
 })) as typeof CardMedia;
 
-interface PokemonItemProps {
+const StyledLink = styled(Link)({
+  textDecoration: 'none',
+});
+
+interface IPokemonItemProps {
   pokemonItem: IPokemon;
 }
 
-export const PokemonItem: FC<PokemonItemProps> = ({ pokemonItem }) => {
+export const PokemonItem: FC<IPokemonItemProps> = ({ pokemonItem }) => {
   const capitalizedPokemonName = useMemo(() => (
     capitalizeFirstLetter(pokemonItem.name)
   ), [pokemonItem]);
 
   return (
-    <Card sx={{ display: 'flex', flexDirection: 'column', height: 275, width: 250 }}>
-      <StyledCardMedia
-        component="img"
-        image={`./pokemons/${pokemonItem.id}.svg`}
-        alt={pokemonItem.name}
-        //TODO onClick={handleOpen}
-      />
-      <StyledNameContainer>
-        <Typography gutterBottom variant="body1" component="div" align="center" margin="auto">
-          {capitalizedPokemonName}
-        </Typography>
-      </StyledNameContainer>
-    </Card>
+    <StyledLink to={`/detail/${pokemonItem.id}`}>
+      <StyledCard>
+        <StyledCardMedia
+          component="img"
+          image={`./pokemons/${pokemonItem.id}.svg`}
+          alt={pokemonItem.name}
+        />
+        <StyledNameContainer>
+          <Typography gutterBottom variant="body1" component="div" align="center" margin="auto">
+            {capitalizedPokemonName}
+          </Typography>
+        </StyledNameContainer>
+      </StyledCard>
+    </StyledLink>
   );
 };
